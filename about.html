@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me - Antigravity Blog</title>
+<meta name="description" content="소프트웨어 공학도 윤아영의 소개 페이지입니다.">
+
+<!-- 구글 폰트 적용 (Outfit, Noto Sans KR) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-dark: #07090f;
+    --bg-grad-1: #0f172a;
+    --bg-grad-2: #1e1b4b;
+    --accent: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    /* 인덱스 파일과 동일한 다크 테마 그라데이션 */
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-grad-1), var(--bg-grad-2));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* 별 배경 애니메이션 유지 */
+  .stars, .twinkling {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    display: block;
+    z-index: 0;
+  }
+
+  .stars {
+    background: #000 url('https://raw.githubusercontent.com/frontend-joe/css-stars/master/stars.png') repeat top center;
+    z-index: -2;
+    opacity: 0.6;
+  }
+
+  .twinkling {
+    background: transparent url('https://raw.githubusercontent.com/frontend-joe/css-stars/master/twinkling.png') repeat top center;
+    z-index: -1;
+    animation: move-twink-back 200s linear infinite;
+    opacity: 0.5;
+  }
+
+  @keyframes move-twink-back {
+    from {background-position: 0 0;}
+    to {background-position: -10000px 5000px;}
+  }
+
+  /* 메인 카드 (프리미엄 글래스모피즘 효과 적용) */
+  .card {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 3.5rem 4rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    width: 90%;
+    animation: float 6s ease-in-out infinite, fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0; /* fadeIn 시작값 복구용 */
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 그라데이션 타이틀 */
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #ffffff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+  }
+
+  /* 정보 텍스트 리스트 스타일링 */
+  .info-list {
+    text-align: left;
+    margin-bottom: 2.5rem;
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--text-main);
+    line-height: 1.8;
+  }
+
+  .info-list p {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+  }
+
+  .info-list p:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .info-tag {
+    font-weight: 600;
+    color: var(--accent);
+    margin-right: 0.8rem;
+    min-width: 70px;
+  }
+
+  /* 홈 버튼 통일성 유지 */
+  .nav-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-main);
+    text-decoration: none;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px -10px var(--accent);
+  }
+  
+  .glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- 백그라운드 효과 -->
+<div class="stars"></div>
+<div class="twinkling"></div>
+
+<!-- About 메인 카드 -->
+<main class="card">
+  <div class="glow"></div>
+  <h1>👋 About Me</h1>
+  
+  <div class="info-list">
+    <p><span class="info-tag">이름</span> 윤아영</p>
+    <p><span class="info-tag">학번</span> 26학번</p>
+    <p><span class="info-tag">학과</span> 공학3계열</p>
+    <p><span class="info-tag">관심사</span> 파이썬(Python), C언어, 아티니어</p>
+  </div>
+
+  <nav class="nav-buttons">
+    <a class="btn" href="index.html">홈으로</a>
+  </nav>
+</main>
+
+</body>
+</html>

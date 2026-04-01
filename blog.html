@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog - Antigravity</title>
+<meta name="description" content="컴퓨터 소프트웨어 공학도의 기술 블로그 글 목록입니다.">
+
+<!-- 구글 폰트 적용 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-dark: #07090f;
+    --bg-grad-1: #0f172a;
+    --bg-grad-2: #1e1b4b;
+    --accent: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    /* 일관된 다크 우주 테마 */
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-grad-1), var(--bg-grad-2));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 5rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* 배경 레이어 (Fixed 적용으로 스크롤 시에도 유지) */
+  .stars, .twinkling {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+  }
+  .stars {
+    background: #000 url('https://raw.githubusercontent.com/frontend-joe/css-stars/master/stars.png') repeat top center;
+    z-index: -2; opacity: 0.6;
+  }
+  .twinkling {
+    background: transparent url('https://raw.githubusercontent.com/frontend-joe/css-stars/master/twinkling.png') repeat top center;
+    animation: move-twink-back 200s linear infinite; opacity: 0.5;
+  }
+  @keyframes move-twink-back { from {background-position: 0 0;} to {background-position: -10000px 5000px;} }
+
+  /* 메인 컨테이너 */
+  .container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  /* 헤더/타이틀 스타일링 */
+  header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInDown 1s ease-out;
+  }
+  
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    /* 그라데이션 텍스트 */
+    background: linear-gradient(to right, #ffffff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+  }
+
+  /* 블로그 포스트 리스트 및 카드 (글래스모피즘 효과 적용) */
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .post {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    opacity: 0; 
+    /* staggered animation을 위한 forwards */
+    animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  /* 포스트마다 등장 시간을 다르게 하여 동적인 화면 연출 */
+  .post:nth-child(1) { animation-delay: 0.2s; }
+  .post:nth-child(2) { animation-delay: 0.4s; }
+  .post:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* 카드 호버(Hover) 시 살짝 떠오르며 강조되는 효과 */
+  .post:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 0 15px 40px -15px rgba(56, 189, 248, 0.35);
+  }
+
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+  }
+
+  .post h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .post-date {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .post p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    font-weight: 300;
+  }
+
+  /* 네비게이션 버튼 (통일성) */
+  .nav-area { text-align: center; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-main);
+    text-decoration: none;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px -10px var(--accent);
+  }
+
+  /* 배경 푸른빛 아우라 (Fixed) */
+  .glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vh;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- 백그라운드 레이어 유지 -->
+<div class="stars"></div>
+<div class="twinkling"></div>
+<div class="glow"></div>
+
+<!-- 메인 블로그 컨테이너 -->
+<main class="container">
+  <header>
+    <h1>📝 Blog Posts</h1>
+  </header>
+
+  <div class="post-list">
+    <!-- 첫 번째 글 (카드 형태) -->
+    <article class="post">
+      <div class="post-header">
+        <h2>파이썬 도전기</h2>
+        <span class="post-date">2026. 03. 31</span>
+      </div>
+      <p>요즘 어딜 가든 파이썬이 필수라고 해서 저도 드디어 시작했어요! 처음엔 까만 터미널 화면이 낯설었는데, 코드가 엄청 직관적이라 생각보다 너무 재밌는 거 있죠? 🤭 앞으로 제가 직접 짠 코드들이랑 좌충우돌 에러 해결기도 여기에 하나씩 올려볼게요. 많이많이 응원해 주세요!</p>
+    </article>
+
+    <!-- 두 번째 글 -->
+    <article class="post">
+      <div class="post-header">
+        <h2>유일한 이번 학기 전공, C언어</h2>
+        <span class="post-date">2026. 03. 31</span>
+      </div>
+      <p>이번 학기 시간표 짜면서 전공 수업을 딱 하나 넣었는데, 그게 바로 악명 높은 C언어예요...😂 포인터가 제일 큰 고비라고 선배님들이 하도 겁을 주셔서 살짝 쫄았지만, 막상 기초부터 하나하나 찍어보니까 퍼즐 맞추는 것 같고 은근 꿀잼이네요? A+ 목표로 빡공해 보겠습니다! 💯</p>
+    </article>
+    
+    <!-- 세 번째 글 -->
+    <article class="post">
+      <div class="post-header">
+        <h2>아티니어 동아리에 들어갔어요~</h2>
+        <span class="post-date">2026. 04. 01</span>
+      </div>
+      <p>대학교 오면 제일 먼저 해보고 싶었던 개발 동아리! 고민 끝에 매력 넘치는 '아티니어'에 최종 합류하게 되었습니다~ 🎉 다들 코딩에 완전 진심이셔서 저도 덩달아 팍팍 자극받는 중이랍니다! 앞으로 여기서 진행할 재밌는 프로젝트 썰들도 블로그에 많이많이 들려드릴게요. 아티니어 화이팅! 💖</p>
+    </article>
+  </div>
+
+  <nav class="nav-area">
+    <a class="btn" href="index.html">홈으로</a>
+  </nav>
+</main>
+
+</body>
+</html>

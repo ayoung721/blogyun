@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>윤아영 블로그</title>
+<meta name="description" content="컴퓨터 소프트웨어 공학도의 기술 블로그입니다.">
+
+<!-- 구글 폰트 적용 (Outfit) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-dark: #07090f;
+    --bg-grad-1: #0f172a;
+    --bg-grad-2: #1e1b4b;
+    --accent: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    /* 부드러운 다크 테마 그라데이션 */
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-grad-1), var(--bg-grad-2));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 배경 애니메이션 */
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* 별 배경 레이어 분리 (깊이감 부여) */
+  .stars, .twinkling {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
+    display: block;
+    z-index: 0;
+  }
+
+  .stars {
+    background: #000 url('https://raw.githubusercontent.com/frontend-joe/css-stars/master/stars.png') repeat top center;
+    z-index: -2;
+    opacity: 0.6;
+  }
+
+  .twinkling {
+    background: transparent url('https://raw.githubusercontent.com/frontend-joe/css-stars/master/twinkling.png') repeat top center;
+    z-index: -1;
+    animation: move-twink-back 200s linear infinite;
+    opacity: 0.5;
+  }
+
+  @keyframes move-twink-back {
+    from {background-position: 0 0;}
+    to {background-position: -10000px 5000px;}
+  }
+
+  /* 메인 콘텐츠 컨테이너 (글래스모피즘 효과) */
+  .content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 4rem 3rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    width: 90%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* 부드러운 떠다니는 효과 */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    /* 텍스트 그라데이션 */
+    background: linear-gradient(to right, #ffffff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* 프리미엄 버튼 효과 */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-main);
+    text-decoration: none;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 호버 시 은은한 및 스케일업 효과 */
+  .btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px -10px var(--accent);
+  }
+
+  /* 콘텐츠 뒤 은은한 푸른빛 효과 */
+  .glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- 백그라운드 애니메이션 -->
+<div class="stars"></div>
+<div class="twinkling"></div>
+
+<!-- 메인 블로그 컨테이너 -->
+<main class="content">
+  <div class="glow"></div>
+  <h1 style="display: flex; align-items: center; justify-content: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Logo_WonKwang_University.svg" alt="원광대 로고" style="height: 1.1em; margin-right: 15px; background: rgba(255, 255, 255, 0.95); border-radius: 50%; padding: 6px; box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);">윤아영 블로그</h1>
+  <p class="subtitle">개발자 윤아영의 블로그에 오신걸 환영합니다!</p>
+
+  <nav class="nav-buttons">
+    <a class="btn" href="about.html">About Me</a>
+    <a class="btn" href="blog.html">Blog</a>
+  </nav>
+</main>
+
+</body>
+</html>

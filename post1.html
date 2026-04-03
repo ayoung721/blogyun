@@ -2,138 +2,82 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>파이썬 학습 경험과 느낀 점</title>
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<title>파이썬</title>
+
 <style>
 body {
   margin: 0;
   font-family: 'Pretendard', sans-serif;
-  background: #0f172a;
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #020617, #1e293b);
+  background-size: 400% 400%;
+  animation: bgMove 12s ease infinite;
   color: #e2e8f0;
-  line-height: 1.7;
+}
+
+@keyframes bgMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 60px 20px;
-}
-h1 {
-  animation: fadeDown 0.8s ease;
+  padding: 40px 20px;
+  animation: fadeUp 0.8s ease;
 }
 
-@keyframes fadeDown {
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-.card {
-  background: rgba(30,41,59,0.7);
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+a {
+  color: #38bdf8;
+  text-decoration: none;
 }
 
 h1 {
-  font-size: 2rem;
-  margin-top: 0;
   margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-h3 {
-  color: #38bdf8;
-  margin-top: 35px;
-  margin-bottom: 10px;
 }
 
 p {
-  color: #cbd5f5;
+  line-height: 1.7;
   margin-bottom: 15px;
-}
-
-ul {
-  padding-left: 20px;
-  color: #cbd5f5;
-  margin-bottom: 15px;
-}
-
-li {
-  margin-bottom: 8px;
-}
-
-hr {
-  border: none;
-  border-top: 1px dashed rgba(255,255,255,0.2);
-  margin: 30px 0;
-}
-
-a.btn {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 10px 25px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 50px;
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-a.btn:hover {
-  background: #38bdf8;
-  border-color: #38bdf8;
 }
 </style>
 </head>
+
 <body>
+
 <div class="container">
-  <div class="card">
-    <h1>🐍 파이썬 학습 경험과 느낀 점</h1>
-    
-    <h3>1. 파이썬을 배우게 된 계기</h3>
-    <p>최근 다양한 분야에서 프로그래밍의 중요성이 강조되면서, 비교적 배우기 쉽다고 알려진 파이썬을 공부하게 되었다. 특히 데이터 분석과 인공지능 분야에서 널리 활용된다는 점이 흥미롭게 느껴졌다.</p>
 
-    <hr>
+<a href="index.html">← 목록으로 돌아가기</a>
 
-    <h3>2. 학습 과정</h3>
-    <p>파이썬은 문법이 직관적이어서 초보자도 쉽게 접근할 수 있었다.<br>
-    기본적인 변수, 조건문, 반복문 등을 학습하면서 프로그래밍의 기초 개념을 이해할 수 있었다.</p>
-    <p>하지만 간단한 코드 작성은 쉬웠지만, 오류가 발생했을 때 원인을 찾는 과정은 생각보다 어려웠다.</p>
+<h1>파이썬 학습 경험과 느낀 점</h1>
 
-    <hr>
+<p><b>1. 파이썬을 배우게 된 계기</b><br>
+최근 다양한 분야에서 프로그래밍의 중요성이 강조되면서 파이썬을 공부하게 되었다.</p>
 
-    <h3>3. 어려웠던 점</h3>
-    <ul>
-      <li>에러 메시지를 이해하는 것이 어려웠다</li>
-      <li>코드가 길어질수록 구조를 파악하기 힘들었다</li>
-      <li>논리적으로 생각하는 능력이 부족하다고 느꼈다</li>
-    </ul>
+<p><b>2. 학습 과정</b><br>
+기본 문법을 배우며 프로그래밍 기초를 익혔다.</p>
 
-    <hr>
+<p><b>3. 어려웠던 점</b><br>
+에러 해결과 논리적 사고가 어려웠다.</p>
 
-    <h3>4. AI를 활용한 학습</h3>
-    <p>학습 과정에서 AI를 적극적으로 활용하였다.<br>
-    특히 ChatGPT를 통해 오류 해결과 코드 설명을 도움받았다.</p>
-    <p>예를 들어, 코드 실행 중 발생한 에러를 입력하면 원인을 분석해주고 해결 방법을 제시해주어 학습에 큰 도움이 되었다.</p>
+<p><b>4. AI 활용</b><br>
+ChatGPT를 통해 코드 오류를 해결했다.</p>
 
-    <hr>
+<p><b>5. 느낀 점</b><br>
+입문자에게 적합한 언어라고 느꼈다.</p>
 
-    <h3>5. 느낀 점</h3>
-    <p>파이썬은 입문자에게 매우 적합한 언어라고 느꼈다.<br>
-    앞으로 더 다양한 프로젝트를 통해 실력을 향상시키고 싶다.</p>
-
-    <p><small style="color:var(--text-muted);">이번 글은 AI의 도움을 받아 일부 작성되었습니다.</small></p>
-
-    <a href="blog.html" class="btn">← 목록으로 돌아가기</a>
-  </div>
 </div>
+
 </body>
 </html>
